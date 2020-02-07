@@ -49,7 +49,7 @@ final class ViewController: UIViewController {
     private func fetch() {
         articles = realm.objects(Article.self)
         if articles?.count == 0 {
-//            refresh()
+            refresh()
         }
 
         notificationToken = articles?.observe { [weak self, tableView] changes in
@@ -75,11 +75,11 @@ final class ViewController: UIViewController {
 
     private func createNewArticle() {
         let article = Article()
-        article.title = random(length: 7)
-        article.articleDescription = random(length: 10)
+        article.title = .random(length: 7)
+        article.articleDescription = .random(length: 10)
         article.isFavourite = false
         article.tags.append(objectsIn: (0...(0...5).randomElement()!).map { _ in
-            TagRealm(value: [UUID().uuidString, random(length: 3)])
+            TagRealm(value: [UUID().uuidString, .random(length: 3)])
         })
 
         DispatchQueue(label: "background").async {
@@ -90,10 +90,16 @@ final class ViewController: UIViewController {
         }
     }
 
-    private func random(length: Int32) -> String {
-        let characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-        let randomCharacters = (0..<length).map { _ in characters.randomElement()! }
-        return String(randomCharacters)
+    private func backgroundUpdate(_ row: Int) {
+        guard let articles = articles else { return }
+        let articleRef = ThreadSafeReference(to: articles[row])
+        DispatchQueue(label: "background").async {
+            guard let backgroundRealm = try? Realm(),
+                let article = backgroundRealm.resolve(articleRef) else { return }
+            try! backgroundRealm.write {
+                article.isFavourite.toggle()
+            }
+        }
     }
 
     @IBAction func addButtonTouchedUp(_ sender: Any) {
@@ -119,7 +125,12 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         cell.setup(title: articles[indexPath.row].title,
                    description: articles[indexPath.row].articleDescription,
                    tags: articles[indexPath.row].tags.map { $0.name }.reduce("", { $0 + " " + $1 }),
-                   isFavourite: articles[indexPath.row].isFavourite)
+                   isFavourite: articles[indexPath.row].isFavourite,
+                   authorName: articles[indexPath.row].author?.name)
         return cell
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        backgroundUpdate(indexPath.row)
     }
 }

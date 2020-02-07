@@ -13,14 +13,17 @@ final class TableViewCell: UITableViewCell {
     @IBOutlet private weak var articleDescriptionLabel: UILabel!
     @IBOutlet private weak var tagsLabel: UILabel!
     @IBOutlet private weak var isFavouriteLabel: UILabel!
+    @IBOutlet private weak var authorLabel: UILabel!
 
     func setup(title: String,
                description: String,
                tags: String,
-               isFavourite: Bool) {
+               isFavourite: Bool,
+               authorName: String?) {
         titleLabel.text = title
         articleDescriptionLabel.text = description
         tagsLabel.text = tags
         isFavouriteLabel.text = "\(isFavourite)"
+        authorLabel.text = authorName ?? ""
     }
 }
