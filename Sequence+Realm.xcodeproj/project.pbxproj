@@ -15,8 +15,9 @@
 		8811BFE823E9AB760067E15B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8811BFE623E9AB760067E15B /* LaunchScreen.storyboard */; };
 		8811BFF623E9AF800067E15B /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8811BFF523E9AF800067E15B /* main.swift */; };
 		8811C00123E9B6B70067E15B /* output.json in Resources */ = {isa = PBXBuildFile; fileRef = 8811C00023E9B6B70067E15B /* output.json */; };
-		8811C00323E9B8320067E15B /* LC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8811C00223E9B8320067E15B /* LC.swift */; };
 		8811C00523E9BAAF0067E15B /* LazyDecodingSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8811C00423E9BAAF0067E15B /* LazyDecodingSequence.swift */; };
+		8896B23A23ED4DE0008626AB /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8896B23923ED4DE0008626AB /* Model.swift */; };
+		8896B23C23ED72F1008626AB /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8896B23B23ED72F1008626AB /* TableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -42,8 +43,9 @@
 		8811BFF323E9AF800067E15B /* gen */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = gen; sourceTree = BUILT_PRODUCTS_DIR; };
 		8811BFF523E9AF800067E15B /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		8811C00023E9B6B70067E15B /* output.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = output.json; sourceTree = "<group>"; };
-		8811C00223E9B8320067E15B /* LC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LC.swift; sourceTree = "<group>"; };
 		8811C00423E9BAAF0067E15B /* LazyDecodingSequence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LazyDecodingSequence.swift; sourceTree = "<group>"; };
+		8896B23923ED4DE0008626AB /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		8896B23B23ED72F1008626AB /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		948AD961F12538A3EE95B566 /* Pods-Sequence+Realm.debuginmemory.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sequence+Realm.debuginmemory.xcconfig"; path = "Target Support Files/Pods-Sequence+Realm/Pods-Sequence+Realm.debuginmemory.xcconfig"; sourceTree = "<group>"; };
 		9D8E22863711A528791D0F8A /* Pods-Sequence+Realm.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sequence+Realm.debug.xcconfig"; path = "Target Support Files/Pods-Sequence+Realm/Pods-Sequence+Realm.debug.xcconfig"; sourceTree = "<group>"; };
 		E3D42C152D3E4A1471990F88 /* Pods_Sequence_Realm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sequence_Realm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -93,10 +95,11 @@
 			isa = PBXGroup;
 			children = (
 				8811BFDB23E9AB710067E15B /* AppDelegate.swift */,
-				8811BFDF23E9AB710067E15B /* ViewController.swift */,
-				8811C00223E9B8320067E15B /* LC.swift */,
-				8811C00423E9BAAF0067E15B /* LazyDecodingSequence.swift */,
 				8811BFE123E9AB710067E15B /* Main.storyboard */,
+				8811BFDF23E9AB710067E15B /* ViewController.swift */,
+				8896B23B23ED72F1008626AB /* TableViewCell.swift */,
+				8896B23923ED4DE0008626AB /* Model.swift */,
+				8811C00423E9BAAF0067E15B /* LazyDecodingSequence.swift */,
 				8811BFE423E9AB760067E15B /* Assets.xcassets */,
 				8811BFE623E9AB760067E15B /* LaunchScreen.storyboard */,
 				8811C00023E9B6B70067E15B /* output.json */,
@@ -268,9 +271,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8896B23C23ED72F1008626AB /* TableViewCell.swift in Sources */,
+				8896B23A23ED4DE0008626AB /* Model.swift in Sources */,
 				8811BFE023E9AB710067E15B /* ViewController.swift in Sources */,
 				8811BFDC23E9AB710067E15B /* AppDelegate.swift in Sources */,
-				8811C00323E9B8320067E15B /* LC.swift in Sources */,
 				8811C00523E9BAAF0067E15B /* LazyDecodingSequence.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

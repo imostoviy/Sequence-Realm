@@ -8,6 +8,7 @@
 
 import UIKit
 import KeychainSwift
+import RealmSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -23,7 +24,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     private func checkKey() {
         let isInMemory = "\(Bundle.main.object(forInfoDictionaryKey: "IN_MEMORY")!)" == "YES"
-        guard !isInMemory else { return }
+        guard !isInMemory else {
+            let config = Realm.Configuration(inMemoryIdentifier: "InMemory")
+            Realm.Configuration.defaultConfiguration = config
+            return
+        }
+
+        let keychain = KeychainSwift()
+        if let key = keychain.getData("key") {
+            let configuation = Realm.Configuration(encryptionKey: key)
+            Realm.Configuration.defaultConfiguration = configuation
+            return
+        }
+
+        var key = Data(count: 64)
+        _ = key.withUnsafeMutableBytes { bytes in
+            SecRandomCopyBytes(kSecRandomDefault, 64, bytes)
+        }
+        keychain.set(key, forKey: "key")
+        let configuation = Realm.Configuration(encryptionKey: key)
+        Realm.Configuration.defaultConfiguration = configuation
     }
 }
 
