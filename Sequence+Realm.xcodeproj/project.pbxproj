@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6BD9889F08534F47252BB3EF /* Pods_Sequence_Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3D42C152D3E4A1471990F88 /* Pods_Sequence_Realm.framework */; };
+		842EBB5423F0181800992C55 /* testRealm.json in Resources */ = {isa = PBXBuildFile; fileRef = 842EBB5323F0181800992C55 /* testRealm.json */; };
 		8811BFDC23E9AB710067E15B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8811BFDB23E9AB710067E15B /* AppDelegate.swift */; };
 		8811BFE023E9AB710067E15B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8811BFDF23E9AB710067E15B /* ViewController.swift */; };
 		8811BFE323E9AB710067E15B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8811BFE123E9AB710067E15B /* Main.storyboard */; };
@@ -35,6 +36,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		842EBB5323F0181800992C55 /* testRealm.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = testRealm.json; sourceTree = "<group>"; };
 		8811BFD823E9AB710067E15B /* Sequence+Realm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sequence+Realm.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8811BFDB23E9AB710067E15B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8811BFDF23E9AB710067E15B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 				8811BFE423E9AB760067E15B /* Assets.xcassets */,
 				8811BFE623E9AB760067E15B /* LaunchScreen.storyboard */,
 				8811C00023E9B6B70067E15B /* output.json */,
+				842EBB5323F0181800992C55 /* testRealm.json */,
 				8811BFE923E9AB760067E15B /* Info.plist */,
 			);
 			path = "Sequence+Realm";
@@ -224,6 +227,7 @@
 				8811C00123E9B6B70067E15B /* output.json in Resources */,
 				8811BFE823E9AB760067E15B /* LaunchScreen.storyboard in Resources */,
 				8811BFE523E9AB760067E15B /* Assets.xcassets in Resources */,
+				842EBB5423F0181800992C55 /* testRealm.json in Resources */,
 				8811BFE323E9AB710067E15B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

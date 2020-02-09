@@ -27,7 +27,7 @@ func random(length: Int32) -> String {
     return String(randomCharacters)
 }
 
-let jsons = (1...100000).map { _ in
+let jsons = (1...1000).map { _ in
     Json(title: random(length: 7),
          description: random(length: 30),
          tags: (0...5).map { _ in
@@ -37,6 +37,6 @@ let jsons = (1...100000).map { _ in
 
 let data = try? JSONEncoder().encode(jsons)
 
-FileManager().createFile(atPath: "output.json", contents: data)
+FileManager().createFile(atPath: "testRealm.json", contents: data)
 
 print("done")

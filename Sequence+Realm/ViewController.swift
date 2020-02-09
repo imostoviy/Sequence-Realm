@@ -21,10 +21,15 @@ final class ViewController: UIViewController {
         fetch()
     }
 
+    deinit {
+        notificationToken?.invalidate()
+    }
+
     private func refresh() {
         DispatchQueue(label: "Background").async {
             let data = Bundle(for: type(of: self))
-                .path(forResource: "output", ofType: "json")
+//                .path(forResource: "output", ofType: "json")
+                .path(forResource: "testRealm", ofType: "json")
                 .flatMap { try? Data(contentsOf: URL(fileURLWithPath: $0), options: .mappedIfSafe) }!
 
             let sequence = try! JSONDecoder().decode(LazyDecodingSequence<Json>.self, from: data)
@@ -132,5 +137,19 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         backgroundUpdate(indexPath.row)
+    }
+
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        guard let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "Detail") as? DetailViewController, let articles = articles else {
+            return nil
+        }
+
+        viewController.reference = ThreadSafeReference(to: articles[indexPath.row])
+
+        return .init(actions: [.init(style: .normal,
+                                     title: "Author",
+                                     handler: { [weak self] _, _, _ in
+            self?.navigationController?.pushViewController(viewController, animated: true)
+        })])
     }
 }

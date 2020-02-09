@@ -11,8 +11,11 @@ import RealmSwift
 
 final class DetailViewController: UIViewController {
 
-    let realm = try! Realm()
-    var authors: Results<Author>?
+    private let realm = try! Realm()
+    private var authors: Results<Author>?
+    private var article: Article?
+
+    var reference: ThreadSafeReference<Article>?
 
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var authorPicker: UIPickerView!
@@ -29,6 +32,16 @@ final class DetailViewController: UIViewController {
         if authors?.count == 0 {
             randomAuthors()
         }
+
+        guard let ref = reference else {
+            return
+        }
+        article = realm.resolve(ref)
+
+        titleLabel?.text = article?.title
+        authorTextField.text = article?.author?.name
+
+        setupTextField()
     }
 
     private func randomAuthors() {
@@ -43,21 +56,29 @@ final class DetailViewController: UIViewController {
     private func setupTextField() {
         authorTextField.inputView = authorPicker
         authorTextField.inputAccessoryView = toolBar
+        authorPicker.delegate = self
+        authorPicker.dataSource = self
     }
 
     @IBAction func doneButtonTouched(_ sender: Any) {
         authorTextField.resignFirstResponder()
+        try! realm.write {
+            article?.author = authors?[authorPicker.selectedRow(inComponent: 0)]
+        }
+        authorTextField.text = authors?[authorPicker.selectedRow(inComponent: 0)].name
     }
 }
 
 extension DetailViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        <#code#>
+        1
     }
 
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        <#code#>
+        authors?.count ?? 0
     }
 
-
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        authors?[row].name
+    }
 }
